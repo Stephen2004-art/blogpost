@@ -1,3 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Happy+Monkey&display=swap');
+
+body, html {
+  height: 100%;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("fatih-kgqu_qs3B78-unsplash.jpg");
+
+  /* Full height */
+  height: 100%;
+  width: 100%;
+  /* padding: 0px 0px 0px 5px; */
+  /* Center and scale the image nicely */
+  background-position: inherit;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.write {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  
+}
+
+.button {
+  font-family: 'Happy Monkey', cursive;
+  transition-duration: 0.4s;
+  cursor: pointer;
+
+}
+
+.button1:hover {
+  background-color: #e474ee!important;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+
+}
+
+.sign {
+  font-family: 'Happy Monkey', cursive;
+  font-weight: 900;
+  color: rgb(255, 255, 255);
+}
+
+
+
+
+
+
+
+
+
+
 /* #root {
   max-width: 1280px;
   margin: 0 auto;
