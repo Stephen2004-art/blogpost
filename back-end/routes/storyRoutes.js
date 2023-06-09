@@ -26,7 +26,7 @@ router.get('/:id', async (req, res)=>{
     try {
         const story = await storyModel.findOne({_id: req.params.id})
         res.send({
-            message: 'Fetched Stories Successfully!',
+            message: 'Fetched Story Successfully!',
             data: story
         })
     } catch (error) {
@@ -92,8 +92,11 @@ router.post('/create', uploadStoryImages, async (req, res)=> {
         
         const newStory = new storyModel({
             topic: req.body.topic,
-            blog: req.body.blog,
-            mainImage: newFileName,
+            story1: req.body.story1,
+            story2: req.body.story2,
+            story3: req.body.story3,
+            story4: req.body.story4,
+            image: newFileName,
             images: imagesArray,
         });
         let result = await newStory.save();

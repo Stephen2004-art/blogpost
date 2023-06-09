@@ -4,6 +4,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import userAuth from './routes/auth/userAuth.js'
 import adminAuth from './routes/auth/adminAuth.js'
+import storyRoutes from './routes/storyRoutes.js'
 
 const app = express();
 const PORT = 5001;
@@ -20,6 +21,9 @@ mongoose.connect(mongoUri)
 
 app.use('/', userAuth)
 app.use('/admin', adminAuth)
+app.use('/stories', storyRoutes)
+
+
 
 app.listen(PORT, ()=>{
     console.log('Server is listening on PORT:'+PORT)
