@@ -6,7 +6,7 @@ import Register from './pages/auth/Register'
 import Login from './pages/auth/Login'
 import Help from './pages/Help'
 import Password from './pages/Password'
-
+import Home from './pages/Home'
 
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
         <Route exact path='/login' element={<Login/>}/>
         <Route exact path='/help' element={<Help/>}/>
         <Route exact path='/password' element={<Password/>}/>
+        <Route exact path='/home' element={<Home/>}/>
 
 
         </Routes>
