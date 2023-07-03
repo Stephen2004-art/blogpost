@@ -25,7 +25,11 @@ const storySchema = new Schema ({
         type: String,
         required: true
     },
-    images: [String]
+    images: [String],
+    category: {
+        type: String,
+        required: true  
+    }
 });
 
 export default model('storyModel', storySchema);

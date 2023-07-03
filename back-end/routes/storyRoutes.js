@@ -1,7 +1,9 @@
 import express from 'express';
 import storyModel from '../models/storyModel.js';
 import multer from 'multer'
-import fs from 'fs'
+import fs from 'fs';
+import categoryModel from '../models/categoryModel.js';
+import categoryRoutes from './categoryRoutes.js'
 
 const router = express.Router();
 
@@ -54,6 +56,7 @@ router.post('/editstory/:id', async (req, res)=>{
     const story = await storyModel.findOne({_id: id});
     // story.topic = req.body.topic;
     story.blog = req.body.blog;
+    story.category = req.body.category;
     // story.main_image = req.body.mainImage;
     const result = await story.save();
     // console.log('Story updated succesfully');
@@ -98,6 +101,7 @@ router.post('/create', uploadStoryImages, async (req, res)=> {
             story4: req.body.story4,
             image: newFileName,
             images: imagesArray,
+            category: req.body.category
         });
         let result = await newStory.save();
         res.send({
