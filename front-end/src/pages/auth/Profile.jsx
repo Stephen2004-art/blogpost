@@ -27,7 +27,7 @@ const Profile = () =>{
                 </div>
             </div>
             <div style={styles.name}>
-                <p style={styles.name1}>By Stephen & Co.</p>
+                <p style={styles.name1}  onClick={()=> navigate('/aboutcompany')} className="button">By Stephen & Co.</p>
             </div>
         </div>
     )

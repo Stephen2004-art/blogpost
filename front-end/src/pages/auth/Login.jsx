@@ -70,7 +70,7 @@ const Login = () =>{
                     </div>
                 </Form>
                 <div style={styled.name}>
-                    <p style={styled.name1}>By Stephen & Co.</p>
+                    <p style={styled.name1}  onClick={()=> navigate('/aboutcompany')} className="button">By Stephen & Co.</p>
                 </div>
             </div>
         </div>

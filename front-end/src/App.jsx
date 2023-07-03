@@ -7,7 +7,10 @@ import Login from './pages/auth/Login'
 import Help from './pages/Help'
 import Password from './pages/Password'
 import Home from './pages/Home'
-
+import TheStory from '../src/components/TheStory'
+import About from '../src/pages/About'
+import ContactUs from '../src/pages/ContactUs'
+import AddStory from './admin/AddStory'
 
 function App() {
 
@@ -21,6 +24,10 @@ function App() {
         <Route exact path='/help' element={<Help/>}/>
         <Route exact path='/password' element={<Password/>}/>
         <Route exact path='/home' element={<Home/>}/>
+        <Route exact path='/thestory/:id' element={<TheStory/>}/>
+        <Route exact path='/aboutcompany' element={<About/>}/>
+        <Route exact path='/contactus' element={<ContactUs/>}/>
+        <Route exact path='/addstory' element={<AddStory/>}/>
 
 
         </Routes>

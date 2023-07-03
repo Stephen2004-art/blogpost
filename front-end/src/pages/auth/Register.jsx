@@ -39,8 +39,8 @@ const Register = () =>{
                 <h1 className="sign">SIGN UP</h1>
             </div>
             <div style={styless.cont2}>
-                <Container style={styless.cont}>
-                    <Form noValidate validated={validated} onSubmit={registerUser}>
+                <Container style={styless.cont} className="glass">
+                    <Form noValidate validated={validated} onSubmit={registerUser} >
                         <div  style={styless.inputs}>
                             <div>
                                 <Form.Group className="mb-3">
@@ -151,7 +151,7 @@ const Register = () =>{
                 </Container>
             </div>
             <div style={styless.name}>
-                <p style={styless.name1}>By Stephen & Co.</p>
+                <p style={styless.name1}  onClick={()=> navigate('/aboutcompany')} className="button">By Stephen & Co.</p>
             </div>
         </div>
     )
@@ -170,6 +170,7 @@ const styless= {
         border: '0px solid black',
         background: 'white',
         borderRadius: '5px',
+
     },
     cont2: {
         paddingBottom: '90px',
