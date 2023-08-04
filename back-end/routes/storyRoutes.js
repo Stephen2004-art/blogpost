@@ -1,14 +1,13 @@
 import express from 'express';
 import storyModel from '../models/storyModel.js';
-import multer from 'multer'
+import multer from 'multer';
 import fs from 'fs';
-import categoryModel from '../models/categoryModel.js';
-import categoryRoutes from './categoryRoutes.js'
+import checkAuth from './auth/checkAuth.js';
+import adminCheckAuth from './auth/AdminCheckAuth.js';
 
 const router = express.Router();
 
-router.get('/get', async (req, res)=>{
-
+router.get('/get', checkAuth, async (req, res)=>{
     try {
         const stories = await storyModel.find()
         res.send({
@@ -18,13 +17,28 @@ router.get('/get', async (req, res)=>{
     } catch (error) {
         console.log(error)
         res.send({
-            message: 'Failed'
+            message: 'Failed' 
+        })
+    }
+})
+
+router.get('/admin/get', adminCheckAuth, async (req, res)=>{
+    try {
+        console.log(req.admin);
+        const stories = await storyModel.find({userId: req.admin._id})
+        res.send({
+            message: 'Fetched stories successfully!!',
+            data: stories
+        })
+    } catch (error) {
+        console.log(error)
+        res.send({
+            message: 'Failed' 
         })
     }
 })
 
 router.get('/:id', async (req, res)=>{
-    
     try {
         const story = await storyModel.findOne({_id: req.params.id})
         res.send({
@@ -48,18 +62,20 @@ router.post('/delete/:id', async (req, res)=>{
     }
 })
 
-
 router.post('/editstory/:id', async (req, res)=>{
     console.log('editstory')
     console.log(req.body);
     let id = req.params.id;
     const story = await storyModel.findOne({_id: id});
-    // story.topic = req.body.topic;
-    story.blog = req.body.blog;
-    story.category = req.body.category;
+    story.topic = req.body.topic;
+    story.story1 = req.body.story1;
+    story.story2 = req.body.story2;
+    story.story3 = req.body.story3;
+    story.story4 = req.body.story4;
+    // story.category = req.body.category;
     // story.main_image = req.body.mainImage;
+    story.userId = req.body.userId
     const result = await story.save();
-    // console.log('Story updated succesfully');
     res.send({
         message: 'Story updated succesfully',
         data : result
@@ -71,7 +87,7 @@ const uploadStoryImages = upload.fields([
     {name: 'image', maxCount: 1},
     {name: 'images', maxCount: 4}
 ])
-router.post('/create', uploadStoryImages, async (req, res)=> {
+router.post('/create', adminCheckAuth, uploadStoryImages, async (req, res)=> {
     try {
         // uploading one image
         console.log(req.files.image[0]);
@@ -101,7 +117,8 @@ router.post('/create', uploadStoryImages, async (req, res)=> {
             story4: req.body.story4,
             image: newFileName,
             images: imagesArray,
-            category: req.body.category
+            category: req.body.category,
+            userId: req.admin._id
         });
         let result = await newStory.save();
         res.send({
@@ -116,6 +133,5 @@ router.post('/create', uploadStoryImages, async (req, res)=> {
         });
     }
 });
-
 
 export default router;

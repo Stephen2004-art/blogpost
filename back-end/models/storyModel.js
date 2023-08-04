@@ -29,6 +29,9 @@ const storySchema = new Schema ({
     category: {
         type: String,
         required: true  
+    },
+    userId: {
+        type: String
     }
 });
 

@@ -11,24 +11,29 @@ router.get('/users', checkAuth, async (req, res)=> {
     console.log(req.user)
     res.send(`Hello ${req.user.firstName} ${req.user.lastName}. You are logged in!`)
 })
+
 router.post('/signin', async (req, res)=> {
     if(!req.body.email || !req.body.password){
         res.send('Must provide Email and Password')
     }
-    const user = await userModel.findOne({email: req.body.email})
-    bcrypt.compare(req.body.password, user.password, (err, response)=> {
-        if(err){
-            res.send(err)
-        }else if(response === true){
-            const token = jwt.sign({userId: user._id}, 'MY_SECRET_KEY')
-            res.send({
-                token: token,
-                message: 'User Authenticated'
-            })
-        }else{
-            res.send('Invalid Password or Email')
+        try {
+            const user = await userModel.findOne({email: req.body.email})
+            bcrypt.compare(req.body.password, user.password, (err, response)=> {
+            if(err){
+                res.send(err)
+            }else if(response === true){
+                const token = jwt.sign({userId: user._id}, 'MY_SECRET_KEY')
+                res.send({
+                    token: token,
+                    message: 'User Authenticated'
+                })
+            }else{
+                res.send('Invalid Password or Email')
+            }
+        })
+        } catch (error) {
+            console.log(error)
         }
-    })
 })
 
 router.post('/signup', (req, res)=>{
@@ -39,8 +44,6 @@ router.post('/signup', (req, res)=>{
             res.send(err)
         }
         try {
-            // console.log(hash)
-            // res.send(hash)
             const newUser = new userModel({
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
@@ -64,4 +67,5 @@ router.post('/signup', (req, res)=>{
         }
     })
 })
+
 export default router

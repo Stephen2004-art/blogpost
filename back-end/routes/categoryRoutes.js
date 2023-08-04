@@ -43,6 +43,7 @@ router.post('/update/:id', async (req, res)=>{
         console.log(error)
     }
 })
+
 router.post('/delete/:id', async (req, res)=>{
     try {
         await categoryModel.deleteOne({_id: req.params.id})

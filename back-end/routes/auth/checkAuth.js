@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken'
 import userModel from '../../models/userModel.js'
-import adminModel from '../../models/adminModel.js';
 
 const checkAuth = (req, res, next) => {
     const { authorization } = req.headers;
