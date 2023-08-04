@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import FilterVintageIcon from '@mui/icons-material/FilterVintage';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 
 const Profile = () =>{
-
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    
     return(
         <div className="bg" style={styles.div}>
             <div style={styles.cont}>
-                <h1 style={styles.head}  className="write">Correo.</h1>
+                <h1 style={styles.head} className="write">Correo.</h1>
                 <div style={styles.icon1}>
                     <FilterVintageIcon style={styles.icon11}/>
                 </div>
@@ -19,7 +19,8 @@ const Profile = () =>{
                 <div style={styles.btn}>
                     <button onClick={()=> navigate('/login')} style={styles.btn2} className="button button1">LOG IN</button>
                 </div>
-                <div style={styles.help} className="button"  onClick={()=> navigate('/help')}>
+                <p  style={styles.admin} className="button" onClick={()=> navigate('/admin')}>You are a blogger? go to admin page</p>
+                <div style={styles.help} className="button" onClick={()=> navigate('/help')}>
                     <div style={styles.hicon}>
                         <HelpOutlineIcon/>
                     </div>
@@ -27,7 +28,7 @@ const Profile = () =>{
                 </div>
             </div>
             <div style={styles.name}>
-                <p style={styles.name1}  onClick={()=> navigate('/aboutcompany')} className="button">By Stephen & Co.</p>
+                <p style={styles.name1} onClick={()=> navigate('/aboutcompany')} className="button">By Stephen & Co.</p>
             </div>
         </div>
     )
@@ -35,7 +36,7 @@ const Profile = () =>{
 
 const styles = {
     div: {
-        margin: '-100px -2px 0px -2px',
+        margin: '-100px -2px 0px -2px'
     },
     head: {
         fontSize: '100px',
@@ -56,7 +57,8 @@ const styles = {
     btn: {
         margin: '10px',
         display: 'flex',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginTop: '-10px'
     },
     btn1: {
         margin: '10px',
@@ -98,6 +100,12 @@ const styles = {
     },
     name1: {
         paddingBottom: '9px'
+    },
+    admin: {
+        display: 'flex',
+        justifyContent: 'center',
+        marginBottom: '-20px',
+        fontWeight: '700'
     }
 }
 

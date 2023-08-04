@@ -1,5 +1,5 @@
-import Axios from 'axios'
-import Cookies from 'js-cookie'
+import Axios from 'axios';
+import Cookies from 'js-cookie';
 
 let token = Cookies.get('token')
 
@@ -9,4 +9,5 @@ const instance = Axios.create({
         Authorization: `Bearer ${token}`
     }
 });
+
 export default instance

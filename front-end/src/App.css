@@ -7,12 +7,11 @@ body, html {
 
 .bg {
   /* The image used */
-  background-image: url("fatih-kgqu_qs3B78-unsplash.jpg");
+  background-image: url("/fatih-kgqu_qs3B78-unsplash.jpg")!important;
 
   /* Full height */
   height: 100%;
   width: 100%;
-  /* padding: 0px 0px 0px 5px; */
   /* Center and scale the image nicely */
   background-position: inherit;
   background-repeat: no-repeat;
@@ -21,21 +20,23 @@ body, html {
 
 .write {
   font-family: 'Dancing Script', cursive;
-  font-weight: 700;
-  
+  font-weight: 800;
+}
+
+.write2 {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 600;
 }
 
 .button {
   font-family: 'Happy Monkey', cursive;
   transition-duration: 0.4s;
   cursor: pointer;
-
 }
 
 .button1:hover {
   background-color: #e474ee!important;
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-
 }
 
 .sign {
@@ -62,7 +63,6 @@ body, html {
   -webkit-backdrop-filter: blur(10px)!important;
   border: 1px solid rgb(51, 50, 50)!important;
   box-shadow: 0 12px 16px 0 rgba(29, 2, 2, 0.24), 0 17px 50px 0 rgba(29, 29, 29, 0.19)!important;
-
 }
 
 .canvo {
@@ -74,53 +74,32 @@ body, html {
 }
 
 .auto {
-  background-image: url("fatih-kgqu_qs3B78-unsplash.jpg");
+  background-image: url("/fatih-kgqu_qs3B78-unsplash.jpg");
   background-position: inherit;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-
-
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.add {
+  background-image: url("/susan-wilkinson-IPXC2ux4mq4-unsplash.jpg");
+  background-position: inherit;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: 10px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.contact {
+  background-image: url("/ehimetalor-akhere-unuabona-TvJk52iLxQA-unsplash.jpg");
+  background-position: inherit;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: 128px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.about {
+  background-image: url("/jean-philippe-delberghe-75xPHEQBmvA-unsplash.jpg");
+  background-position: inherit;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: 128px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-} */

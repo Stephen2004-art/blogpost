@@ -1,14 +1,15 @@
-import React, {useState, useEffect} from 'react'
-import Cookies from 'js-cookie'
+import React, {useState} from 'react';
+import Cookies from 'js-cookie';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import publicApi from '../../api/publicApi';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () =>{
+    const navigate = useNavigate();
     const [validated, setValidated] = useState(false);
-    const [errorMsg, setErrorMsg] = useState(null)
-    const [formData, setFormData] = useState({email: '', password: ''})
+    const [errorMsg, setErrorMsg] = useState(null);
+    const [formData, setFormData] = useState({email: '', password: ''});
     const loginUser = async (e) =>{
         e.preventDefault()
         const form = e.currentTarget;
@@ -33,36 +34,35 @@ const Login = () =>{
         }
     }
 
-    const navigate = useNavigate()
     return(
         <div className="bg" style={styled.all}>
-            <div style={styled.all1}>
+            <div>
                 <div style={styled.head}>
                     <h1 className="sign">Welcome !!!</h1>
                 </div>
                 <Form noValidate validated={validated} onSubmit={loginUser}>
                     <div style={styled.num1}>
-                    <Form.Group className="mb-3">
-                        <Form.Label style={styled.topic}>E-mail.</Form.Label>
-                        <Form.Control style={styled.input} type="email" placeholder="Email Address" value={formData.email} onChange={(e)=> {setFormData({...formData, email: e.target.value})}} required/>
-                        <Form.Control.Feedback type="invalid">
-                            Please insert your E-mail.
-                        </Form.Control.Feedback>
-                    </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label style={styled.topic}>E-mail.</Form.Label>
+                            <Form.Control style={styled.input} type="email" placeholder="Email Address" value={formData.email} onChange={(e)=> {setFormData({...formData, email: e.target.value})}} required/>
+                            <Form.Control.Feedback type="invalid">
+                                Please insert your E-mail.
+                            </Form.Control.Feedback>
+                        </Form.Group>
                     </div>
                     <div style={styled.num2}>
-                    <Form.Group className="mb-3">
-                        <Form.Label style={styled.topic}>Password.</Form.Label>
-                        <Form.Control style={styled.input} type="password" placeholder="Password" value={formData.password} onChange={(e)=> {setFormData({...formData, password: e.target.value})}} required/>
-                        <Form.Control.Feedback type="invalid">
-                            Please insert your password.
-                        </Form.Control.Feedback> 
-                    </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label style={styled.topic}>Password.</Form.Label>
+                            <Form.Control style={styled.input} type="password" placeholder="Password" value={formData.password} onChange={(e)=> {setFormData({...formData, password: e.target.value})}} required/>
+                            <Form.Control.Feedback type="invalid">
+                                Please insert your password.
+                            </Form.Control.Feedback> 
+                        </Form.Group>
                     </div>
                     <div style={styled.pass}>
-                    <p style={styled.pass1} className="button"  onClick={()=> navigate('/password')}>? Forgot Password</p>
+                    <p style={styled.pass1} className="button" onClick={()=> navigate('/password')}>? Forgot Password</p>
                     </div>
-                    {errorMsg? <p style={{color: 'red', fontSize: '0.8em'}}>{errorMsg}</p>: null}
+                    {errorMsg? <p style={{color: 'white', fontSize: '0.8em', display: 'flex', justifyContent: 'center'}}>{errorMsg}</p>: null}
                     <div style={styled.btn}>
                         <Button style={styled.btn1} variant="primary" type="submit">
                             Log In
@@ -70,7 +70,7 @@ const Login = () =>{
                     </div>
                 </Form>
                 <div style={styled.name}>
-                    <p style={styled.name1}  onClick={()=> navigate('/aboutcompany')} className="button">By Stephen & Co.</p>
+                    <p style={styled.name1} onClick={()=> navigate('/aboutcompany')} className="button">By Stephen & Co.</p>
                 </div>
             </div>
         </div>
@@ -79,10 +79,7 @@ const Login = () =>{
 
 const styled = {
     all: {
-        margin: '-20px -2px 0px -2px',
-    },
-    all1: {
-        // margin: '20px'
+        margin: '-20px -2px 0px -2px'
     },
     head: {
         display: 'flex', 

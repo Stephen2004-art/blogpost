@@ -1,13 +1,14 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 import { Container } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import publicApi from '../../api/publicApi'
+import publicApi from '../../api/publicApi';
 
 const Register = () =>{
+    const navigate = useNavigate();
     const [validated, setValidated] = useState(false);
-    const [errorMsg, setErrorMsg] = useState(null)
+    const [errorMsg, setErrorMsg] = useState(null);
     const [formData, setFormData] = useState({firstName: '', lastName: '', country: '', phoneNumber: '', gender: '', email: '', password: ''})
     const registerUser = async (e) =>{
         e.preventDefault()
@@ -18,7 +19,6 @@ const Register = () =>{
         }
     
         setValidated(true);
-    
         try {
             setErrorMsg(null)
             const { data } = await publicApi.post('/signup', formData)
@@ -32,7 +32,6 @@ const Register = () =>{
         }
     }
 
-    const navigate = useNavigate()
     return(
         <div className="bg" style={styless.div}>
             <div style={styless.sign}>
@@ -40,19 +39,19 @@ const Register = () =>{
             </div>
             <div style={styless.cont2}>
                 <Container style={styless.cont} className="glass">
-                    <Form noValidate validated={validated} onSubmit={registerUser} >
-                        <div  style={styless.inputs}>
+                    <Form noValidate validated={validated} onSubmit={registerUser}>
+                        <div style={styless.inputs}>
                             <div>
                                 <Form.Group className="mb-3">
                                     <Form.Label>First Name.</Form.Label>
                                     <br/>
-                                    <Form.Control  style={{width: '300px', height: '35px'}} type="text" placeholder="First Name" onChange={(e)=> {setFormData({...formData, firstName: e.target.value})}} required/>
+                                    <Form.Control style={{width: '300px', height: '35px'}} type="text" placeholder="First Name" onChange={(e)=> {setFormData({...formData, firstName: e.target.value})}} required/>
                                     <Form.Control.Feedback type="invalid">
                                         Please write your first name.
                                     </Form.Control.Feedback>
                                 </Form.Group>
                             </div>
-                            <div  style={styless.input2}>
+                            <div style={styless.input2}>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Last Name.</Form.Label>
                                     <br/>
@@ -63,7 +62,7 @@ const Register = () =>{
                                 </Form.Group>
                             </div>
                         </div>
-                        <div  style={styless.inputs}>
+                        <div style={styless.inputs}>
                             <div> 
                                 <Form.Group className="mb-3">
                                     <Form.Label>Country.</Form.Label>
@@ -74,7 +73,7 @@ const Register = () =>{
                                     </Form.Control.Feedback>
                                 </Form.Group>
                             </div>
-                            <div  style={styless.input3}>
+                            <div style={styless.input3}>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Phone Number.</Form.Label>
                                     <br/>
@@ -85,7 +84,7 @@ const Register = () =>{
                                 </Form.Group>
                             </div>
                         </div>
-                        <div   style={styless.inputs}>
+                        <div style={styless.inputs}>
                             <div>
                                 <Form.Group className="mb-3">
                                     <Form.Label>E-mail.</Form.Label>
@@ -96,7 +95,7 @@ const Register = () =>{
                                     </Form.Control.Feedback>
                                 </Form.Group>
                             </div>
-                            <div  style={styless.input4}>
+                            <div style={styless.input4}>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Gender.</Form.Label>
                                     <br/>
@@ -108,7 +107,7 @@ const Register = () =>{
                                 </Form.Group>
                             </div>
                         </div>
-                        <div  style={styless.inputs}>
+                        <div style={styless.inputs}>
                             <div>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Password.</Form.Label>
@@ -119,7 +118,7 @@ const Register = () =>{
                                     </Form.Control.Feedback>
                                 </Form.Group>
                             </div>
-                            <div  style={styless.input5}>
+                            <div style={styless.input5}>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Re-enter Password.</Form.Label>
                                     <br/>
@@ -130,7 +129,7 @@ const Register = () =>{
                                 </Form.Group>
                             </div>
                         </div>
-                        <div  style={styless.inputs}>
+                        <div style={styless.inputs}>
                             <Form.Group className="mb-3">
                                 <Form.Check type="checkbox" label="Check me out" required/>
                                 <Form.Control.Feedback type="invalid">
@@ -138,20 +137,20 @@ const Register = () =>{
                                 </Form.Control.Feedback>
                             </Form.Group>
                         </div>
-                        {errorMsg? <p style={{color: 'red', fontSize: '0.8em'}}>{errorMsg}</p>: null}
-                        <div  style={styless.btn}>
-                            <Button  style={styless.btn1} variant="primary" type="submit" className="button button1">
+                        {errorMsg? <p style={{color: 'red', fontSize: '0.8em', display: 'flex', justifyContent: 'center'}}>{errorMsg}</p>: null}
+                        <div style={styless.btn}>
+                            <Button style={styless.btn1} variant="primary" type="submit" className="button button1">
                                 SIGN UP
                             </Button>
                         </div>
                         <div style={styless.acc}>
-                            <p className="button"  onClick={()=> navigate('/login')}>You already have an account? Log in.</p>
+                            <p className="button" onClick={()=> navigate('/login')}>You already have an account? Log in.</p>
                         </div>
                     </Form>
                 </Container>
             </div>
             <div style={styless.name}>
-                <p style={styless.name1}  onClick={()=> navigate('/aboutcompany')} className="button">By Stephen & Co.</p>
+                <p style={styless.name1} onClick={()=> navigate('/aboutcompany')} className="button">By Stephen & Co.</p>
             </div>
         </div>
     )
@@ -159,7 +158,7 @@ const Register = () =>{
 
 const styless= {
     div: {
-        margin: '-20px -2px 0px -2px',
+        margin: '-20px -2px 0px -2px'
     },
     sign: {
         display: 'flex',
@@ -169,8 +168,7 @@ const styless= {
     cont: {
         border: '0px solid black',
         background: 'white',
-        borderRadius: '5px',
-
+        borderRadius: '5px'
     },
     cont2: {
         paddingBottom: '90px',
@@ -196,7 +194,6 @@ const styless= {
         display: 'flex',
         justifyContent: 'center',
         margin: '20px'
-
     },
     input2: {
         marginRight: '100px'

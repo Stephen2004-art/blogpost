@@ -1,28 +1,27 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react';
 import Story from '../components/Story';
 import { useNavigate } from 'react-router-dom';
-import { Container } from '@mui/material'
+import { Container } from '@mui/material';
 import FilterVintageIcon from '@mui/icons-material/FilterVintage';
-import publicApi from '../api/publicApi'
-import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import ListIcon from '@mui/icons-material/List';
+import privateApi from '../api/privateApi';
 
 const Home = () =>{
     const [show, setShow] = useState(false);
-
+    const navigate = useNavigate();
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
   
     const [stories, setStories] = useState([]);
     const getData =() =>{
-      publicApi.get('/stories/get')
+      privateApi.get('/stories/get')
         .then(({data})=> setStories(data.data));
     }
-    const filterByCategory = (category) => {
-      const filteredStories=stories.filter((story)=>{
+    const filterByCategory = (category) => {     
+      const filteredStories = stories.filter((story)=>{
         return (
-            story.category===category        )
+            story.category===category)
       });
       return filteredStories
     }
@@ -30,16 +29,21 @@ const Home = () =>{
       getData();
     },[]);
 
-    const navigate = useNavigate()
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+    
+        navigate('/login');
+      };
+    
     return(
-        <div>
+        <div className="about">
             <div style={stylee.off1}>
-                <ListIcon variant="primary" onClick={handleShow} style={stylee.off}/>
+                <ListIcon variant="primary" onClick={handleShow} style={stylee.off} className="blog1"/>
             </div>
             <Container>
                 <div style={stylee.head}>
                     <h1 style={stylee.name} className="write">CORREO.</h1>
-                    <h3  style={stylee.name1}>Everything from anywhere, at once!</h3 >
+                    <h3 style={stylee.name1}>Everything from anywhere, at once!</h3 >
                 </div>
                 <div style={stylee.icon}>
                     <FilterVintageIcon style={stylee.icon1}/>
@@ -50,50 +54,50 @@ const Home = () =>{
                 <div style={stylee.div}></div>
                 <div style={stylee.div2}>
                     <div>
-                        <h3 style={stylee.h3}>Nature.</h3>
+                        <h3 style={stylee.h3} className="write2">Nature.</h3>
                         <Story stories={filterByCategory('Nature')}/> 
                     </div>
                     <div style={stylee.div3}></div>
                     <div>
-                        <h3 style={stylee.h3}>Auto.</h3>
+                        <h3 style={stylee.h3} className="write2">Auto.</h3>
                         <Story stories={filterByCategory('Auto')}/> 
                     </div>
                     <div style={stylee.div3}></div>
                     <div>
-                        <h3 style={stylee.h3}>Music.</h3>
+                        <h3 style={stylee.h3} className="write2">Music.</h3>
                         <Story stories={filterByCategory('Music')}/> 
                     </div>
                     <div style={stylee.div3}></div>
                     <div>
-                        <h3 style={stylee.h3}>Politics.</h3>
+                        <h3 style={stylee.h3} className="write2">Politics.</h3>
                         <Story stories={filterByCategory('Politics')}/> 
                     </div>
                     <div style={stylee.div3}></div>
                     <div>
-                        <h3 style={stylee.h3}>Entertainment.</h3>
+                        <h3 style={stylee.h3} className="write2">Entertainment.</h3>
                         <Story stories={filterByCategory('Entertainment')}/> 
                     </div>
                     <div style={stylee.div3}></div>
                     <div>
-                        <h3 style={stylee.h3}>Education.</h3>
+                        <h3 style={stylee.h3} className="write2">Education.</h3>
                         <Story stories={filterByCategory('Education')}/> 
                     </div>
                     <div style={stylee.div3}></div>
                     <div>
-                        <h3 style={stylee.h3}>National News.</h3>
+                        <h3 style={stylee.h3} className="write2">National News.</h3>
                         <Story stories={filterByCategory('National News')}/> 
                     </div>
                     <div style={stylee.div3}></div>
                     <div>
-                        <h3 style={stylee.h3}>Other Stories.</h3>
+                        <h3 style={stylee.h3} className="write2">Other Stories.</h3>
                         <Story stories={filterByCategory('Other stories')}/> 
                     </div>
                 </div>
             </Container>
             <div style={stylee.named}>
-                <p style={stylee.named1}  onClick={()=> navigate('/aboutcompany')} className="button">By Stephen & Co.</p>
+                <p style={stylee.named1} onClick={()=> navigate('/aboutcompany')} className="button">By Stephen & Co.</p>
             </div>
-            <div style={stylee.canva1}>
+            <div>
                 <Offcanvas show={show} onHide={handleClose} style={stylee.canva} className="auto">
                     <div style={stylee.canva2}>
                         <Offcanvas.Header closeButton>
@@ -101,10 +105,10 @@ const Home = () =>{
                         </Offcanvas.Header>
                     </div>
                     <Offcanvas.Body style={stylee.canva3}>
-                        <button style={stylee.offf} className="canvo"  onClick={()=> navigate('/home')}>Home</button><br/>
-                        <button style={stylee.offf} className="canvo"  onClick={()=> navigate('/addstory')}>Add A Story !</button><br/>
-                        <button style={stylee.offf} className="canvo"  onClick={()=> navigate('/aboutcompany')}>About</button><br/>
-                        <button style={stylee.offf} className="canvo"  onClick={()=> navigate('/contactus')}>Contact Us !</button>
+                        <button style={stylee.offf} className="canvo" onClick={()=> navigate('/admin')}>Add A Story !</button><br/>
+                        <button style={stylee.offf} className="canvo" onClick={()=> navigate('/aboutcompany')}>About</button><br/>
+                        <button style={stylee.offf} className="canvo" onClick={()=> navigate('/contactus')}>Contact Us !</button><br/>
+                        <button style={stylee.offf} className="canvo"  onClick={handleLogout}>Log Out</button>
                     </Offcanvas.Body>
                 </Offcanvas>
             </div>
@@ -161,7 +165,7 @@ const stylee = {
     },
     div3: {
         border: '1px solid grey',
-        borderStyle: 'solid',
+        borderStyle: 'dotted',
         marginTop: '50px' 
     },
     named: {
@@ -177,24 +181,16 @@ const stylee = {
     off: {
         width: '40px',
         height: '40px',
-        marginBottom: '-150px',
-        // marginTop: '50px'
+        marginBottom: '-150px'
     },
     off1: {
-        // paddingTop: '15px',
-        marginLeft: '120px',
-        // marginBottom: '-10px',
+        marginLeft: '120px'
     },
     canva: {
         borderRadius: '65%',
         height: '50%',
-        // width : '50%',
         marginTop: '20px',
         marginLeft: '20px'
-        // display: 'flex'
-    },
-    canva1: {
-        // borderRadius: 'fit-content'
     },
     canva2: {
         marginLeft: '95px',

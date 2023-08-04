@@ -1,26 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import '../App';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import publicApi from '../api/publicApi';
 import { useNavigate } from 'react-router-dom';
 
 const Story = ({stories}) =>{
     const backendUrl = import.meta.env.VITE_APP_BACKEND_URL;
-    // const [stories, setStories] = useState([]);
-    // const getStories = async () => {
-    //     const { data } = await publicApi.get('/stories/get')
-    //     console.log(data)
-    //     setStories(data.data)
-    // }
-    // useEffect(()=>{
-    //     getStories()
-    // },[])
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    
     return(
         <div class="flex-row flex-nowrap overflow-auto">
-            {stories.length < 1 ? <p style={styled.content}>No stories available...</p> :
+            {stories.length < 1 ? <p style={styled.content}>No blogs available...</p> :
            <Row xs={1} md={3}  className="g-4" style={styled.row}>
                 {stories.map((story) =>(
                     <Col key={story._id}>
@@ -35,9 +26,8 @@ const Story = ({stories}) =>{
                         </Card>
                     </Col>
                 ))}
-                {stories.length > 1 ? <p>The End</p> : null}
+                {stories.length >= 1 ? <p style={styled.end}>The End</p> : null}
            </Row>}
-           {/*  */}
         </div>
     )
 }
@@ -69,8 +59,14 @@ const styled= {
     },
     topic1: {
         fontWeight: '700'
+    },
+    end:{
+        textAlign:'center',
+        fontSize:'15px',
+        color:"#9B9B9B",
+        margin:'auto',
+        fontWeight: '600'
     }
 }
-
+    
 export default Story
-
